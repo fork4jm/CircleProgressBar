@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class CircleProgressBar;
+@class CountdownProgressView;
 
 typedef enum : NSUInteger {
     CustomizationStateDefault = 0,
@@ -18,7 +18,7 @@ typedef enum : NSUInteger {
 
 @interface DemoViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet CircleProgressBar *circleProgressBar;
+@property (weak, nonatomic) IBOutlet CountdownProgressView *circleProgressBar;
 @property (weak, nonatomic) IBOutlet UIButton *customizeButton;
 
 - (IBAction)increaseProgress:(id)sender;
