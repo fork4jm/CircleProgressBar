@@ -216,10 +216,12 @@ const CGFloat AnimationChangeTimeStep = 0.01f;
         barWidth = radius;
     }
     
+    progressAngle = progressAngle - 90;
+    
     CGContextSetFillColorWithColor(context, self.progressBarTrackColorForDrawing.CGColor);
     CGContextBeginPath(context);
-    CGContextAddArc(context, center.x, center.y, radius, DEGREES_TO_RADIANS(_startAngle + 360), DEGREES_TO_RADIANS(progressAngle), 1);
-    CGContextAddArc(context, center.x, center.y, radius - barWidth, DEGREES_TO_RADIANS(progressAngle), DEGREES_TO_RADIANS(_startAngle + 360), 0);
+    CGContextAddArc(context, center.x, center.y, radius, DEGREES_TO_RADIANS(_startAngle + 270), DEGREES_TO_RADIANS(progressAngle), 1);
+    CGContextAddArc(context, center.x, center.y, radius - barWidth, DEGREES_TO_RADIANS(progressAngle), DEGREES_TO_RADIANS(_startAngle + 270), 0);
     CGContextClosePath(context);
     CGContextFillPath(context);
 }

@@ -34,6 +34,7 @@
     if (!_shadowCircleProgressBar) {
         CGRect frame = self.bounds;
         frame.origin.y += 1;
+        frame.origin.x += 1;
         _shadowCircleProgressBar = [[CircleProgressBar alloc] initWithFrame:frame];
         _shadowCircleProgressBar.backgroundColor = [UIColor clearColor];
         [_shadowCircleProgressBar setProgressBarWidth:7.0];
