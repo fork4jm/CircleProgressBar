@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 typedef NSString*(^StringGenerationBlock)(CGFloat progress);
-typedef NSAttributedString*(^AttributedStringGenerationBlock)(CGFloat progress);
 
 /** Class that represents CircleProgressBar itself.
  
@@ -33,29 +32,6 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable UIColor *progressBarTrackColor;
 /// @brief Start Angle
 @property (nonatomic) IBInspectable CGFloat startAngle;
-
-/// @brief Whether HintView should be shown or not
-@property (nonatomic) IBInspectable BOOL hintHidden;
-/// @brief Inner spacing between Progress Bar and Hint View
-@property (nonatomic) IBInspectable CGFloat hintViewSpacing;
-/// @brief Hint View Background Color
-@property (nonatomic) IBInspectable UIColor *hintViewBackgroundColor;
-/// @brief Hint View Text Font
-@property (nonatomic) IBInspectable UIFont *hintTextFont;
-/// @brief Hint View Text Color
-@property (nonatomic) IBInspectable UIColor *hintTextColor;
-
-/** Used to set block that generates NSString according to progress, to show it in Hint View
- 
- @param StringGenerationBlock block with CGFloat progress parameter, that returns NSString*
- */
-- (void)setHintTextGenerationBlock:(StringGenerationBlock)generationBlock;
-
-/** Used to set block that generates NSAttributedString according to progress, to show it in Hint View
- 
- @param AttributedStringGenerationBlock block with CGFloat progress parameter, that returns NSAttributedString*
- */
-- (void)setHintAttributedGenerationBlock:(AttributedStringGenerationBlock)generationBlock;
 
 /// @brief Current ProgressBar's progress (Read-Only)
 /// To change ProgressBar's progress use setProgress:animated:

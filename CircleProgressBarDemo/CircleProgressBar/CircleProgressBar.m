@@ -14,13 +14,8 @@
 // Progress Bar Defaults
 #define DefaultProgressBarProgressColor [UIColor colorWithRed:0.71 green:0.099 blue:0.099 alpha:0.7]
 #define DefaultProgressBarTrackColor [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7]
-const CGFloat DefaultProgressBarWidth = 7.0f;
+const CGFloat DefaultProgressBarWidth = 4.0f;
 
-// Hint View Defaults
-#define DefaultHintBackgroundColor [UIColor colorWithWhite:0 alpha:0.7]
-#define DefaultHintTextFont [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:30.0f]
-#define DefaultHintTextColor [UIColor whiteColor]
-const CGFloat DefaultHintSpacing = 20.0f;
 const StringGenerationBlock DefaultHintTextGenerationBlock = ^NSString *(CGFloat progress) {
     return [NSString stringWithFormat:@"%.0f%%", progress * 100];
 };
@@ -43,16 +38,6 @@ const CGFloat AnimationChangeTimeStep = 0.01f;
 - (CGFloat)progressBarWidthForDrawing;
 - (void)drawProgressBar:(CGContextRef)context progressAngle:(CGFloat)progressAngle center:(CGPoint)center radius:(CGFloat)radius;
 
-// Hint Drawing
-- (CGFloat)hintViewSpacingForDrawing;
-- (UIColor*)hintViewBackgroundColorForDrawing;
-- (UIFont*)hintTextFontForDrawing;
-- (UIColor*)hintTextColorForDrawing;
-- (NSString*)stringRepresentationOfProgress:(CGFloat)progress;
-- (void)drawSimpleHintTextAtCenter:(CGPoint)center;
-- (void)drawAttributedHintTextAtCenter:(CGPoint)center;
-- (void)drawHint:(CGContextRef)context center:(CGPoint)center radius:(CGFloat)radius;
-
 // Animation
 - (void)animateProgressBarChangeFrom:(CGFloat)startProgress to:(CGFloat)endProgress duration:(CGFloat)duration;
 - (void)updateProgressBarForAnimation;
@@ -62,8 +47,6 @@ const CGFloat AnimationChangeTimeStep = 0.01f;
 @implementation CircleProgressBar {
     NSTimer *_animationTimer;
     CGFloat _currentAnimationProgress, _startProgress, _endProgress, _animationProgressStep;
-    StringGenerationBlock _hintTextGenerationBlock;
-    AttributedStringGenerationBlock _hintAttributedTextGenerationBlock;
 }
 
 - (BOOL)isAnimating {
@@ -115,9 +98,7 @@ const CGFloat AnimationChangeTimeStep = 0.01f;
     [self drawBackground:context];
     
     [self drawProgressBar:context progressAngle:currentProgressAngle center:innerCenter radius:radius];
-    if (!_hintHidden) {
-        [self drawHint:context center:innerCenter radius:radius];
-    }
+    
 }
 
 #pragma mark - Setters with View Update
@@ -134,41 +115,6 @@ const CGFloat AnimationChangeTimeStep = 0.01f;
 
 - (void)setProgressBarTrackColor:(UIColor *)progressBarTrackColor {
     _progressBarTrackColor = progressBarTrackColor;
-    [self setNeedsDisplay];
-}
-
-- (void)setHintHidden:(BOOL)isHintHidden {
-    _hintHidden = isHintHidden;
-    [self setNeedsDisplay];
-}
-
-- (void)setHintViewSpacing:(CGFloat)hintViewSpacing {
-    _hintViewSpacing = hintViewSpacing;
-    [self setNeedsDisplay];
-}
-
-- (void)setHintViewBackgroundColor:(UIColor *)hintViewBackgroundColor {
-    _hintViewBackgroundColor = hintViewBackgroundColor;
-    [self setNeedsDisplay];
-}
-
-- (void)setHintTextFont:(UIFont *)hintTextFont {
-    _hintTextFont = hintTextFont;
-    [self setNeedsDisplay];
-}
-
-- (void)setHintTextColor:(UIColor *)hintTextColor {
-    _hintTextColor = hintTextColor;
-    [self setNeedsDisplay];
-}
-
-- (void)setHintTextGenerationBlock:(StringGenerationBlock)generationBlock {
-    _hintTextGenerationBlock = generationBlock;
-    [self setNeedsDisplay];
-}
-
-- (void)setHintAttributedGenerationBlock:(AttributedStringGenerationBlock)generationBlock {
-    _hintAttributedTextGenerationBlock = generationBlock;
     [self setNeedsDisplay];
 }
 
@@ -221,62 +167,9 @@ const CGFloat AnimationChangeTimeStep = 0.01f;
     CGContextSetFillColorWithColor(context, self.progressBarTrackColorForDrawing.CGColor);
     CGContextBeginPath(context);
     CGContextAddArc(context, center.x, center.y, radius, DEGREES_TO_RADIANS(_startAngle + 270), DEGREES_TO_RADIANS(progressAngle), 1);
-    CGContextAddArc(context, center.x, center.y, radius - barWidth, DEGREES_TO_RADIANS(progressAngle), DEGREES_TO_RADIANS(_startAngle + 270), 0);
+    CGContextAddArc(context, center.x, center.y, radius - 4, DEGREES_TO_RADIANS(progressAngle), DEGREES_TO_RADIANS(_startAngle + 270), 0);
     CGContextClosePath(context);
     CGContextFillPath(context);
-}
-
-#pragma mark - Hint Drawing
-
-- (CGFloat)hintViewSpacingForDrawing {
-    return (_hintViewSpacing != 0 ? _hintViewSpacing : DefaultHintSpacing);
-}
-
-- (UIColor*)hintViewBackgroundColorForDrawing {
-    return (_hintViewBackgroundColor != nil ? _hintViewBackgroundColor : DefaultHintBackgroundColor);
-}
-
-- (UIFont*)hintTextFontForDrawing {
-    return (_hintTextFont != nil ? _hintTextFont : DefaultHintTextFont);
-}
-
-- (UIColor*)hintTextColorForDrawing {
-    return (_hintTextColor != nil ? _hintTextColor : DefaultHintTextColor);
-}
-
-- (NSString*)stringRepresentationOfProgress:(CGFloat)progress {
-    return (_hintTextGenerationBlock != nil ? _hintTextGenerationBlock(progress) : DefaultHintTextGenerationBlock(progress));
-}
-
-- (void)drawSimpleHintTextAtCenter:(CGPoint)center {
-    NSString *progressString = [self stringRepresentationOfProgress:_progress];
-    CGSize hintTextSize = [progressString boundingRectWithSize:CGSizeZero options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: self.hintTextFontForDrawing} context:nil].size;
-    [progressString drawAtPoint:CGPointMake(center.x - hintTextSize.width / 2, center.y - hintTextSize.height / 2) withAttributes:@{NSFontAttributeName: self.hintTextFontForDrawing, NSForegroundColorAttributeName: self.hintTextColorForDrawing}];
-}
-
-- (void)drawAttributedHintTextAtCenter:(CGPoint)center {
-    NSAttributedString *progressString = _hintAttributedTextGenerationBlock(_progress);
-    CGSize hintTextSize = [progressString boundingRectWithSize:CGSizeZero options:NSStringDrawingUsesFontLeading context:nil].size;
-    [progressString drawAtPoint:CGPointMake(center.x - hintTextSize.width / 2, center.y - hintTextSize.height / 2)];
-}
-
-- (void)drawHint:(CGContextRef)context center:(CGPoint)center radius:(CGFloat)radius {
-    CGFloat barWidth = self.progressBarWidthForDrawing;
-    if (barWidth + self.hintViewSpacingForDrawing > radius) {
-        return;
-    }
-    
-    CGContextSetFillColorWithColor(context, self.hintViewBackgroundColorForDrawing.CGColor);
-    CGContextBeginPath(context);
-    CGContextAddArc(context, center.x, center.y, radius - barWidth - self.hintViewSpacingForDrawing, DEGREES_TO_RADIANS(0), DEGREES_TO_RADIANS(360), 1);
-    CGContextClosePath(context);
-    CGContextFillPath(context);
-    
-    if (_hintAttributedTextGenerationBlock != nil) {
-        [self drawAttributedHintTextAtCenter:center];
-    } else {
-        [self drawSimpleHintTextAtCenter:center];
-    }
 }
 
 #pragma mark - Amination
@@ -299,6 +192,7 @@ const CGFloat AnimationChangeTimeStep = 0.01f;
         _animationTimer = nil;
         _progress = _endProgress;
     }
+    NSLog(@"progress:%f",_progress);
     [self setNeedsDisplay];
 }
 
