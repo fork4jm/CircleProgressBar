@@ -36,6 +36,8 @@
 
 @end
 
+const NSInteger DefaultTotalDuration = 60;
+
 @interface CountdownProgressView()
 
 @end
@@ -63,10 +65,8 @@
         _countdownLabel = [[UILabel alloc] initWithFrame:self.bounds];
         _countdownLabel.font = [UIFont systemFontOfSize:15];
         _countdownLabel.textColor = [UIColor colorWithRed:59.0/255.0 green:166.0/255.0 blue:6.0/255.0 alpha:1];
-        if (_totalDuration == 0) {
-            _totalDuration = 60;
-        }
-        _countdownLabel.text = [NSString stringWithFormat:@"%ld",(long)_totalDuration];
+        
+        _countdownLabel.text = [NSString stringWithFormat:@"%ld",(long)(_totalDuration == 0 ? DefaultTotalDuration :_totalDuration)];
         _countdownLabel.textAlignment = NSTextAlignmentCenter;
         _countdownLabel.shadowColor = [UIColor colorWithRed:255.0/255.0 green:221.0/255.0 blue:131.0/255.0 alpha:1];
         _countdownLabel.shadowOffset = CGSizeMake(1, 1);
@@ -140,10 +140,7 @@
 }
 
 - (void)updateDuration:(NSInteger)duration {
-    if (_totalDuration == 0) {
-        _totalDuration = 60;
-    }
-    self.countdownLabel.text = [NSString stringWithFormat:@"%ld",(_totalDuration - duration)];
+    self.countdownLabel.text = [NSString stringWithFormat:@"%ld",((_totalDuration == 0 ? DefaultTotalDuration :_totalDuration) - duration)];
     [self updateProgress:((CGFloat)duration/(CGFloat)_totalDuration)];
 }
 
