@@ -117,8 +117,7 @@ const NSInteger DefaultTotalDuration = 60;
     [self initUI];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initUI];
