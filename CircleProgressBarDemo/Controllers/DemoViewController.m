@@ -24,11 +24,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _progressView.totalDuration = 50;
     duration = 0;
 }
 
 - (IBAction)increaseProgress:(id)sender {
-    _progressView.totalDuration = 60;
     [_progressView updateDuration:++duration];
 }
 

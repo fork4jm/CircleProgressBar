@@ -98,7 +98,6 @@ const CGFloat AnimationChangeTimeStep = 0.01f;
     [self drawBackground:context];
     
     [self drawProgressBar:context progressAngle:currentProgressAngle center:innerCenter radius:radius];
-    
 }
 
 #pragma mark - Setters with View Update
