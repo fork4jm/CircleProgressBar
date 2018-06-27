@@ -127,8 +127,8 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="circleProgressBar" destination="Whh-CX-dwE" id="MU0-zy-mDg"/>
                         <outlet property="customizeButton" destination="khC-c9-Lte" id="Xgw-TZ-QpK"/>
+                        <outlet property="progressView" destination="Whh-CX-dwE" id="aWC-8u-QGp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6m-hJ-udX" sceneMemberID="firstResponder"/>

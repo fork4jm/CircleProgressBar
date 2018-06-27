@@ -19,20 +19,21 @@
 
 @implementation DemoViewController {
     CustomizationState _state;
+    int duration;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    duration = 0;
 }
 
 - (IBAction)increaseProgress:(id)sender {
-    [_circleProgressBar.foreCircleProgressBar setProgress:(_circleProgressBar.foreCircleProgressBar.progress + 10.0/60.0) animated:YES];
-    [_circleProgressBar.shadowCircleProgressBar setProgress:(_circleProgressBar.shadowCircleProgressBar.progress + 10.0/60.0) animated:YES];
+    _progressView.totalDuration = 60;
+    [_progressView updateDuration:++duration];
 }
 
 - (IBAction)decreaseProgress:(id)sender {
-    [_circleProgressBar.foreCircleProgressBar setProgress:(_circleProgressBar.foreCircleProgressBar.progress - 10.0/60.0) animated:YES];
-    [_circleProgressBar.shadowCircleProgressBar setProgress:(_circleProgressBar.shadowCircleProgressBar.progress - 10.0/60.0) animated:YES];
+    [_progressView updateDuration:--duration];
 }
 
 - (IBAction)customizeNext:(id)sender {

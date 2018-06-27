@@ -192,7 +192,7 @@ const CGFloat AnimationChangeTimeStep = 0.01f;
         _animationTimer = nil;
         _progress = _endProgress;
     }
-    NSLog(@"progress:%f",_progress);
+//    NSLog(@"progress:%f",_progress);
     [self setNeedsDisplay];
 }
 

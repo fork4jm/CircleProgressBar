@@ -16,4 +16,8 @@
 @property (strong, nonatomic) CircleProgressBar *foreCircleProgressBar;
 @property (strong, nonatomic) UILabel *countdownLabel;
 
+@property (assign, nonatomic) NSInteger totalDuration;
+
+- (void)updateDuration:(NSInteger)duration;
+
 @end

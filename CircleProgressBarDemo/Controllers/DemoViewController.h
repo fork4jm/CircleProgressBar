@@ -18,7 +18,7 @@ typedef enum : NSUInteger {
 
 @interface DemoViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet CountdownProgressView *circleProgressBar;
+@property (weak, nonatomic) IBOutlet CountdownProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIButton *customizeButton;
 
 - (IBAction)increaseProgress:(id)sender;

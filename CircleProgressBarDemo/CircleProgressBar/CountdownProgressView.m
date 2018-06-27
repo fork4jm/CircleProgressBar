@@ -62,7 +62,10 @@
     if (!_countdownLabel) {
         _countdownLabel = [[UILabel alloc] initWithFrame:self.bounds];
         _countdownLabel.textColor = [UIColor redColor];
-        _countdownLabel.text = @"1";
+        if (_totalDuration == 0) {
+            _totalDuration = 60;
+        }
+        _countdownLabel.text = [NSString stringWithFormat:@"%ld",(long)_totalDuration];
         _countdownLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _countdownLabel;
@@ -126,6 +129,19 @@
     [self addSubview:self.foreCircleProgressBar];
     
     [self addSubview:self.countdownLabel];
+}
+
+- (void)updateDuration:(NSInteger)duration {
+    if (_totalDuration == 0) {
+        _totalDuration = 60;
+    }
+    self.countdownLabel.text = [NSString stringWithFormat:@"%ld",(_totalDuration - duration)];
+    [self updateProgress:((CGFloat)duration/(CGFloat)_totalDuration)];
+}
+
+- (void)updateProgress:(CGFloat)progress {
+    [self.foreCircleProgressBar setProgress:progress animated:YES];
+    [self.shadowCircleProgressBar setProgress:progress animated:YES];
 }
 
 @end
