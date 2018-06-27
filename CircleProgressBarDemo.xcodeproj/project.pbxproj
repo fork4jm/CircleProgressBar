@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		860CA03E20E246D700033F92 /* CountdownProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 860CA03D20E246D700033F92 /* CountdownProgressView.m */; };
+		860CA04020E33FAC00033F92 /* CircleProgressBar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 860CA03F20E33FAC00033F92 /* CircleProgressBar.bundle */; };
 		BA2831831AB88E2400497BFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2831821AB88E2400497BFD /* main.m */; };
 		BA28318C1AB88E2400497BFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA28318A1AB88E2400497BFD /* Main.storyboard */; };
 		BA28318E1AB88E2400497BFD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA28318D1AB88E2400497BFD /* Images.xcassets */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		860CA03C20E246D700033F92 /* CountdownProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountdownProgressView.h; sourceTree = "<group>"; };
 		860CA03D20E246D700033F92 /* CountdownProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountdownProgressView.m; sourceTree = "<group>"; };
+		860CA03F20E33FAC00033F92 /* CircleProgressBar.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CircleProgressBar.bundle; sourceTree = "<group>"; };
 		BA28317D1AB88E2400497BFD /* CircleProgressBarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CircleProgressBarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2831811AB88E2400497BFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA2831821AB88E2400497BFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				BA2831AB1AB88E9500497BFD /* CircleProgressBar.m */,
 				860CA03C20E246D700033F92 /* CountdownProgressView.h */,
 				860CA03D20E246D700033F92 /* CountdownProgressView.m */,
+				860CA03F20E33FAC00033F92 /* CircleProgressBar.bundle */,
 			);
 			path = CircleProgressBar;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			files = (
 				BA28318C1AB88E2400497BFD /* Main.storyboard in Resources */,
 				BA28318E1AB88E2400497BFD /* Images.xcassets in Resources */,
+				860CA04020E33FAC00033F92 /* CircleProgressBar.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

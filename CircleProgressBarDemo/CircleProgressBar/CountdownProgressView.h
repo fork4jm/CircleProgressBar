@@ -14,5 +14,6 @@
 @property (strong, nonatomic) CircleProgressBar *backCircleProgressBar;
 @property (strong, nonatomic) CircleProgressBar *shadowCircleProgressBar;
 @property (strong, nonatomic) CircleProgressBar *foreCircleProgressBar;
+@property (strong, nonatomic) UILabel *countdownLabel;
 
 @end
