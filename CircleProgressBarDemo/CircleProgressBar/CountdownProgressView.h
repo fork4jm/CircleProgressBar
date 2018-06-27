@@ -17,6 +17,7 @@
 @property (strong, nonatomic) UILabel *countdownLabel;
 
 @property (assign, nonatomic) NSInteger totalDuration;
+@property (assign, nonatomic) NSInteger duration;
 
 - (void)updateDuration:(NSInteger)duration;
 

@@ -138,6 +138,11 @@ const NSInteger DefaultTotalDuration = 60;
     _totalDuration = totalDuration;
 }
 
+- (void)setDuration:(NSInteger)duration {
+    [self updateDuration:duration];
+    _duration = duration;
+}
+
 - (void)updateDuration:(NSInteger)duration {
     self.countdownLabel.text = [NSString stringWithFormat:@"%ld",((_totalDuration == 0 ? DefaultTotalDuration :_totalDuration) - duration)];
     [self updateProgress:((CGFloat)duration/(CGFloat)_totalDuration)];
