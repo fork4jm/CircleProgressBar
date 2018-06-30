@@ -30,10 +30,10 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Whh-CX-dwE" customClass="CountdownProgressView">
-                                <rect key="frame" x="172.5" y="268.5" width="30" height="30"/>
+                                <rect key="frame" x="177.5" y="273.5" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="BWS-1N-q6Q"/>
-                                    <constraint firstAttribute="height" constant="30" id="HJA-XY-ePX"/>
+                                    <constraint firstAttribute="width" constant="20" id="BWS-1N-q6Q"/>
+                                    <constraint firstAttribute="height" constant="20" id="HJA-XY-ePX"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeC-xc-gOE">

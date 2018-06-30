@@ -54,7 +54,7 @@ const NSInteger DefaultTotalDuration = 60;
         CALayer *maskLayer = [CALayer layer];
         UIImage *mask = [UIImage imageNamedFromCircleBundle:@"countdown"];
         maskLayer.contents = (id)mask.CGImage;
-        maskLayer.frame = CGRectMake(0.0, 0.0,30,30);
+        maskLayer.frame = self.bounds;
         _backCircleProgressBar.layer.mask = maskLayer;
     }
     return _backCircleProgressBar;
@@ -63,7 +63,7 @@ const NSInteger DefaultTotalDuration = 60;
 - (UILabel *)countdownLabel {
     if (!_countdownLabel) {
         _countdownLabel = [[UILabel alloc] initWithFrame:self.bounds];
-        _countdownLabel.font = [UIFont systemFontOfSize:15];
+        _countdownLabel.font = [UIFont systemFontOfSize:(self.bounds.size.width / 2.0)];
         _countdownLabel.textColor = [UIColor colorWithRed:59.0/255.0 green:166.0/255.0 blue:6.0/255.0 alpha:1];
         
         _countdownLabel.text = [NSString stringWithFormat:@"%ld",(long)(_totalDuration == 0 ? DefaultTotalDuration :_totalDuration)];
@@ -88,7 +88,7 @@ const NSInteger DefaultTotalDuration = 60;
         CALayer *maskLayer = [CALayer layer];
         UIImage *mask = [UIImage imageNamedFromCircleBundle:@"countdown"];
         maskLayer.contents = (id)mask.CGImage;
-        maskLayer.frame = CGRectMake(0.0, 0.0,30,30);
+        maskLayer.frame = self.bounds;
         _shadowCircleProgressBar.layer.mask = maskLayer;
 
     }
@@ -106,7 +106,7 @@ const NSInteger DefaultTotalDuration = 60;
         CALayer *maskLayer = [CALayer layer];
         UIImage *mask = [UIImage imageNamedFromCircleBundle:@"countdown"];
         maskLayer.contents = (id)mask.CGImage;
-        maskLayer.frame = CGRectMake(0.0, 0.0,30,30);
+        maskLayer.frame = self.bounds;
         _foreCircleProgressBar.layer.mask = maskLayer;
     }
     return _foreCircleProgressBar;
@@ -134,7 +134,7 @@ const NSInteger DefaultTotalDuration = 60;
 }
 
 - (void)setTotalDuration:(NSInteger)totalDuration {
-    self.countdownLabel.text = [NSString stringWithFormat:@"%ld",totalDuration];
+    self.countdownLabel.text = [NSString stringWithFormat:@"%ld",(long)totalDuration];
     _totalDuration = totalDuration;
 }
 
@@ -144,7 +144,7 @@ const NSInteger DefaultTotalDuration = 60;
 }
 
 - (void)updateDuration:(NSInteger)duration {
-    self.countdownLabel.text = [NSString stringWithFormat:@"%ld",duration];
+    self.countdownLabel.text = [NSString stringWithFormat:@"%ld",(long)duration];
     [self updateProgress:((CGFloat)((_totalDuration == 0 ? DefaultTotalDuration :_totalDuration) - duration)/(CGFloat)_totalDuration)];
 }
 
